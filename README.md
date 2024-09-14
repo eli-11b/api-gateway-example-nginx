@@ -324,7 +324,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' red
 ```
 ![RedisInsights](images/redis-insights.png)
 
-# Questions
+# Questions?
 <br>
 <img src="https://github.com/user-attachments/assets/710669b1-49b7-4936-834c-c523781db754"  height="150">
 
