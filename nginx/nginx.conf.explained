@@ -1,0 +1,47 @@
+events {
+    worker_connections 1024;
+}
+
+
+# Upstream definition for service_a
+upstream service_a {
+    server {{SERVICE_A_IP}}:8000;  # Define upstream server for service_a running on {{SERVICE_A_IP}}:8000
+}
+
+# Upstream definition for service_b
+upstream service_b {
+    server {{SERVICE_B_IP}}:8000;  # Define upstream server for service_b running on {{SERVICE_B_IP}}:8000
+}
+
+server {
+    listen 80;  # Listen for incoming HTTP requests on port 80
+    server_name api.sintra.com;  # Respond to requests for api.sintra.com
+
+    # Location block for /users/ endpoint proxying to service_a
+    location /users/ {
+        proxy_pass http://service_a;  # Proxy requests to service_a defined in upstream block
+        proxy_set_header Host $host;  # Set Host header to preserve client's original request
+        proxy_set_header X-Real-IP $remote_addr;  # Set X-Real-IP header to preserve client's IP address
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;  # Set X-Forwarded-For header to track client's original IP
+        proxy_set_header X-Forwarded-Proto $scheme;  # Set X-Forwarded-Proto header to preserve protocol (http or https)
+        proxy_http_version 1.1;  # Use HTTP 1.1 for communication with backend server
+        proxy_set_header Upgrade $http_upgrade;  # Set Upgrade header for WebSocket support
+        proxy_set_header Connection 'upgrade';  # Set Connection header for WebSocket support
+        proxy_cache_bypass $http_upgrade;  # Bypass proxy cache for WebSocket connections
+    }
+
+    # Location block for /products/ endpoint proxying to service_b
+    location /products/ {
+        proxy_pass http://service_b;  # Proxy requests to service_b defined in upstream block
+        proxy_set_header Host $host;  # Set Host header to preserve client's original request
+        proxy_set_header X-Real-IP $remote_addr;  # Set X-Real-IP header to preserve client's IP address
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;  # Set X-Forwarded-For header to track client's original IP
+        proxy_set_header X-Forwarded-Proto $scheme;  # Set X-Forwarded-Proto header to preserve protocol (http or https)
+        proxy_http_version 1.1;  # Use HTTP 1.1 for communication with backend server
+        proxy_set_header Upgrade $http_upgrade;  # Set Upgrade header for WebSocket support
+        proxy_set_header Connection 'upgrade';  # Set Connection header for WebSocket support
+        proxy_cache_bypass $http_upgrade;  # Bypass proxy cache for WebSocket connections
+    }
+
+    # Add other locations or configurations as needed for your API
+}
