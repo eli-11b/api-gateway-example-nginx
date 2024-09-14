@@ -225,7 +225,13 @@ curl -X POST "http://127.0.0.1/redis/read_list/" -H "Content-Type: application/j
 
 Create or Update TLE Data
 
-Stores or updates TLE (Two-Line Element) data for a satellite in Redis.
+Stores or updates TLE (Two-Line Element) data for a satellite in Redis. Uses Hubble Telescope as example.
+
+
+
+<img src="https://github.com/user-attachments/assets/09f3fecf-1509-4010-8b6d-4e2a6efb96b5" height="350">
+
+
 
 HTTP Method: POST
 
