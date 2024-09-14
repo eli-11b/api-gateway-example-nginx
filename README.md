@@ -317,3 +317,7 @@ Get the internal ip of the redis cache so you can use it in the UI with IP:PORT 
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' redis-sintra
 ```
 ![RedisInsights](images/redis-insights.png)
+
+# Questions
+<img src="https://github.com/user-attachments/assets/94581ead-de6b-425d-b5fd-dab1abc381f9"  height="150">
+
