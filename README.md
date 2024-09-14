@@ -326,5 +326,8 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' red
 
 # Questions
 <br>
-<img src="https://github.com/user-attachments/assets/94581ead-de6b-425d-b5fd-dab1abc381f9"  height="150">
+<img src="https://github.com/user-attachments/assets/710669b1-49b7-4936-834c-c523781db754"  height="150">
+
+
+
 
