@@ -1,6 +1,12 @@
 import platform
 
 def add_to_hosts_file(ip_address, hostname):
+    """
+        SUMMARY: edits the host file so you can use api.sintra.com instead of IPAddress
+        ARGS: (ip_address) usually localhost or 127.0.0.1
+        ARGS: (hostname) what you want to use instead of localhost in this example api.sintra.com
+        RETURNS: NONE
+    """
     try:
         # Determine the hosts file path based on the operating system
         system = platform.system()
